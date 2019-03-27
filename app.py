@@ -13,16 +13,22 @@ POSITIVE_MESSAGES = [
     "Oh My Gosh that was crazy good",
     "How fanciful!",
     "Incredible!",
-    "Brilliant talk",
-    "Outlandish quality!"
+    "Brilliant talk!",
+    "Outlandish quality!",
+    "Astonishing!",
+    "Dreamy, Dynamic, Daring"
+    "So Engaging",
+    "You did great!",
+    "Euphoric",
+    "Exhilarating"
 ]
 
 
 @app.route('/')
 def hello_world():
-    index = random.randint(0, len(POSITIVE_MESSAGES) - 1)
-    print(POSITIVE_MESSAGES[index])
-    return render_template('affirmation.html', message=POSITIVE_MESSAGES[index])
+    message = POSITIVE_MESSAGES[random.randint(0, len(POSITIVE_MESSAGES) - 1)]
+    print(message)
+    return render_template('affirmation.html', message=message)
     # return 'Hello World!'
 
 
