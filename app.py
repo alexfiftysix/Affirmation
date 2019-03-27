@@ -7,21 +7,21 @@ POSITIVE_MESSAGES = [
     "You're Doing Great!",
     "Nice One!",
     "Fantastic Presentation!",
-    "I've never felt more alive!",
+    "I've Never Felt More Alive!",
     "Ultimate Champion!",
     "Wow!",
-    "Oh My Gosh that was crazy good",
-    "How fanciful!",
+    "Oh My Gosh That Was Crazy Good",
+    "How Fanciful!",
     "Incredible!",
-    "Brilliant talk!",
-    "Outlandish quality!",
+    "Brilliant Talk!",
+    "Outlandish Quality!",
     "Astonishing!",
     "Dreamy, Dynamic, Daring",
     "So Engaging!",
-    "You did great!",
+    "You Did Great!",
     "Euphoric!",
     "Exhilarating!",
-    "It is clear that as well as having a gift for presentation, you have worked to achieve such skill",
+    "It Is Clear That As Well As Having A Gift For Presentation, You Have Worked To Achieve Such Skill",
     "YES"
 ]
 
@@ -53,11 +53,12 @@ GRADIENT_DIRECTIONS = [
     'to left'
 ]
 
+# TODO: different fonts
 
 @app.route('/')
 def hello_world():
     message = POSITIVE_MESSAGES[random.randint(0, len(POSITIVE_MESSAGES) - 1)]
-    message = message.title()
+    # message = message.title()
 
     tc = COLOURS[random.randint(0, len(COLOURS) - 1)]
     top_colour = '{}, {}, {}'.format(tc[0], tc[1], tc[2])
