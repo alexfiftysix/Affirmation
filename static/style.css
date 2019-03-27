@@ -2,7 +2,15 @@
     box-sizing: border-box;
 }
 
+html {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(red, yellow);
+}
+
 body {
+    padding: 0;
+    margin: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -13,4 +21,8 @@ h1 {
     font-family: sans-serif;
     text-align: center;
     font-size: 10em;
+}
+
+header {
+    color: rgb(255, 177, 253);
 }
