@@ -42,6 +42,17 @@ COLOURS = [
     (255, 117, 255), # SOFT PINK
 ]
 
+GRADIENT_DIRECTIONS = [
+    'to bottom right',
+    'to bottom left',
+    'to top right',
+    'to top left',
+    'to bottom',
+    'to top',
+    'to right',
+    'to left'
+]
+
 
 @app.route('/')
 def hello_world():
@@ -51,14 +62,16 @@ def hello_world():
     tc = COLOURS[random.randint(0, len(COLOURS) - 1)]
     top_colour = '{}, {}, {}'.format(tc[0], tc[1], tc[2])
 
-    bc = [x * 0.6 for x in tc]
+    bc = [min(255, x + 150) for x in tc]
     bottom_colour = '{}, {}, {}'.format(bc[0], bc[1], bc[2])
+
+    gradient_direction = GRADIENT_DIRECTIONS[random.randint(0, len(GRADIENT_DIRECTIONS) - 1)]
 
     print("TOP: {}".format(top_colour))
     print("BOTTOM: {}".format(bottom_colour))
 
     print(message)
-    return render_template('affirmation.html', message=message, top_colour=top_colour, bottom_colour=bottom_colour)
+    return render_template('affirmation.html', message=message, top_colour=top_colour, bottom_colour=bottom_colour, gradient_direction=gradient_direction)
     # return 'Hello World!'
 
 
