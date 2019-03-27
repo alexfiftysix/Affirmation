@@ -15,7 +15,7 @@ That was {qual} {adj}
 What a {qual} {adj} presentation
 how {qual} {adj}
 
-That was so {adj}, I feel {emotion}
+That was so {adj}, I am {emotion}
 
 You are the {noun}
 You are such a {noun}
