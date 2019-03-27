@@ -17,16 +17,18 @@ POSITIVE_MESSAGES = [
     "Outlandish quality!",
     "Astonishing!",
     "Dreamy, Dynamic, Daring"
-    "So Engaging",
+    "So Engaging!",
     "You did great!",
-    "Euphoric",
-    "Exhilarating"
+    "Euphoric!",
+    "Exhilarating!",
+    "It is clear that as well as having a gift for presentation, you have worked to achieve such skill"
 ]
 
 
 @app.route('/')
 def hello_world():
     message = POSITIVE_MESSAGES[random.randint(0, len(POSITIVE_MESSAGES) - 1)]
+    message = message.title()
     print(message)
     return render_template('affirmation.html', message=message)
     # return 'Hello World!'
