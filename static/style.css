@@ -14,10 +14,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-attachment: fixed;
 }
 
 h1 {
     font-family: sans-serif;
     text-align: center;
-    font-size: 10em;
+    font-size: 10vw;
+    max-height: 100vh;
 }
