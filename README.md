@@ -4,6 +4,12 @@ Affirmation is a solution is designed for transmitting possitive affirmations to
 
 ## Usage
 
+Created with Python 3.6.7
+
+Required packages are in requirements.txt
+
+After installing the requirements, run `python app.py` and head to localhost:5000
+
 
 ## Roadmap
 
