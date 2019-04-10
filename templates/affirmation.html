@@ -6,6 +6,14 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css"
 </head>
 <body style="background-image: linear-gradient({{ gradient_direction }}, rgb({{ top_colour }}), rgb({{ bottom_colour }}))">
-    <h1>{{ message }}</h1>
+<h1>{{ message }}</h1>
 </body>
+<script>
+    document.addEventListener("keydown", event => {
+        // If users press 'enter' or 'right arrow' the page refreshes, showing a new affirmation
+        if (event.keyCode === 13 || event.keyCode === 39) {
+            window.location.reload(false)
+        }
+    })
+</script>
 </html>
