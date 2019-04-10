@@ -1,3 +1,5 @@
+ @import url('https://fonts.googleapis.com/css?family=Coming+Soon|Nanum+Pen+Script|Open+Sans|Patrick+Hand+SC');
+
 * {
     box-sizing: border-box;
 }
@@ -18,10 +20,10 @@ body {
 }
 
 h1 {
-    font-family: sans-serif;
     text-align: center;
     font-size: 10vw;
     max-height: 100vh;
     color: white;
+
 }
 /* TODO: only pick appropriate colours so I can have white text*/

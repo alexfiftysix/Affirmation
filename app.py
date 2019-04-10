@@ -31,6 +31,14 @@ def generate_gradient_direction():
     return random.choice(potential_directions)
 
 
+FONTS = [
+    "font-family: 'Nanum Pen Script', cursive;",
+    "font-family: 'Open Sans', sans-serif;",
+    # "font-family: 'Coming Soon', cursive;",
+    "font-family: 'Patrick Hand SC', cursive;",
+]
+
+
 def generate_gradient():
     """
     returns a gradient which can be dropped into css on an element and will function as a 'background-image'
@@ -66,8 +74,10 @@ def generate_gradient():
 def hello_world():
     color = generate_gradient()
     message = generate_affirmation()
+    font = random.choice(FONTS)
+    print(font)
 
-    return render_template('affirmation.html', color=color, message=message)
+    return render_template('affirmation.html', color=color, message=message, font=font)
 
 
 if __name__ == '__main__':

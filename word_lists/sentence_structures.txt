@@ -1,7 +1,7 @@
 {adj}
 You're doing {adj}
 {adj} presentation
-Oh my gosh that was {adj}
+Oh my gosh, that was {adj}
 {adj} quality
 {adj} talk
 so {adj}
@@ -10,7 +10,7 @@ who knew anyone could be so {adj}
 
 You are a {adj} {noun}
 
-Oh my gosh that was {qual} {adj}
+Oh my gosh, that was {qual} {adj}
 That was {qual} {adj}
 What a {qual} {adj} presentation
 how {qual} {adj}
