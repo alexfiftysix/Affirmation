@@ -22,4 +22,6 @@ h1 {
     text-align: center;
     font-size: 10vw;
     max-height: 100vh;
+    color: white;
 }
+/* TODO: only pick appropriate colours so I can have white text*/
