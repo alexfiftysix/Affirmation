@@ -35,8 +35,6 @@ def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotio
     # ))
 
     sentence: str = structure
-    if contains_a:
-        sentence = sentence.replace('{a}', a_an)
     if contains_qual:
         sentence = sentence.replace('{qual}', qualifier)
     if contains_adj:
@@ -46,15 +44,40 @@ def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotio
     if contains_emotion:
         sentence = sentence.replace('{emotion}', emotion)
 
-    punctuation = ' .,!'
     sentence += '!'
+    sentence = sentence.capitalize()
     sentence = convert_a_to_an(sentence)
+    sentence = capitalize_i(sentence)
 
-    for x in punctuation:
-        for y in punctuation:
-            sentence.replace('{}i{}'.format(x, y), '{}I{}'.format(x, y))
+    # for x in punctuation:
+    #     for y in punctuation:
+    #         sentence.replace('{}i{}'.format(x, y), '{}I{}'.format(x, y))
 
-    return sentence.capitalize()
+    return sentence
+
+
+def capitalize_i(sentence: str) -> str:
+    sentence = sentence[:]
+    punctuation = """ "')([]{}.,!"""
+
+    while True:
+        got_to_end = True
+        small_i_at = -1
+        for index in range(len(sentence) - 1):
+            if len(sentence) > index + 1 and sentence[index] == 'i' and (
+                    index == 0 or sentence[index - 1] in punctuation) and sentence[index + 1] in punctuation:
+                small_i_at = index + 1
+                got_to_end = False
+                break
+
+        if got_to_end:
+            break
+        elif small_i_at != -1:
+            start = sentence[:small_i_at - 1]
+            end = sentence[small_i_at:]
+            sentence = start + 'I' + end
+
+    return sentence
 
 
 def convert_a_to_an(sentence: str) -> str:
@@ -90,6 +113,3 @@ def generate_affirmation():
     Eg "You're a winner!"
     """
     return write_affirmation(SENTENCE_STRUCTURES, ADJECTIVES, QUALIFIERS, NOUNS, EMOTIONS)
-
-
-print(generate_affirmation())

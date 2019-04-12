@@ -36,6 +36,7 @@ FONTS = [
     "font-family: 'Open Sans', sans-serif;",
     # "font-family: 'Coming Soon', cursive;",
     "font-family: 'Patrick Hand SC', cursive;",
+    "font-family: 'sans-serif';",
 ]
 
 
