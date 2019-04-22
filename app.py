@@ -7,10 +7,7 @@ from affirmation_generator import generate_affirmation
 
 app = Flask(__name__)
 
-
 # TODO: Sentiment analysis of sentences to decide on appropriate colours. ???
-# TODO: different fonts
-
 
 def generate_gradient_direction():
     """
@@ -31,10 +28,9 @@ def generate_gradient_direction():
 
 
 FONTS = [
-    "font-family: 'Nanum Pen Script', cursive;",
-    "font-family: 'Open Sans', sans-serif;",
-    # "font-family: 'Coming Soon', cursive;",
-    "font-family: 'Patrick Hand SC', cursive;",
+    "font-family: 'Comfortaa', cursive;",
+    "font-family: 'Poiret One', cursive;",
+    "font-family: 'Flamenco', cursive;",
     "font-family: 'sans-serif';",
 ]
 
@@ -87,7 +83,7 @@ def positivity_generator(seed_value):
     url_split= urllib.parse.urlsplit(request.base_url)
     scheme = url_split.scheme or 'https'
     base_url = scheme + '://' + url_split.netloc
-    print(base_url)
+    print(font)
 
     return render_template('affirmation.html', color=color, message=message, font=font, base_url=base_url, seed_value=seed_value)
 
