@@ -13,4 +13,6 @@ champ
 victor
 hero
 conqueror
+emperor
 top dog
+good person

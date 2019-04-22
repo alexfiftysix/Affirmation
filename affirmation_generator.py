@@ -42,6 +42,7 @@ def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotio
     sentence = sentence.capitalize()
     sentence = convert_a_to_an(sentence)
     sentence = capitalize_i(sentence)
+    sentence = capitalize_first_letter_of_sentence(sentence)
 
     return sentence
 
@@ -93,6 +94,27 @@ def convert_a_to_an(sentence: str) -> str:
             start = sentence[:hanging_a_at]
             end = sentence[hanging_a_at:]
             sentence = start + 'n' + end
+
+    return sentence
+
+
+def capitalize_first_letter_of_sentence(sentence: str) -> str:
+    """
+    Given a sentence, converts the first letter of each sentence to a capital
+    :param sentence:
+    :return:
+    """
+    sentence = sentence[:]
+
+    for index in range(len(sentence)):
+        if index == 0:
+            sentence = sentence[0].upper() + sentence[1:]
+        elif sentence[index] == '.' and len(sentence) > index + 2:
+            previous = sentence[:index + 2]
+            converted = sentence[index + 2].upper()
+            next = sentence[index + 3:]
+
+            sentence = previous + converted + next
 
     return sentence
 

@@ -1,18 +1,15 @@
 {adj}
 You're doing {adj}
-{adj} presentation
 Oh my gosh, that was {adj}
 {adj} quality
-{adj} talk
-so {adj}
-how {adj}
-who knew anyone could be so {adj}
+So {adj}
+How {adj}
+Who knew anyone could be so {adj}
 
 You are a {adj} {noun}
 
 Oh my gosh, that was {qual} {adj}
 That was {qual} {adj}
-What a {qual} {adj} presentation
 how {qual} {adj}
 
 That was so {adj}, I am {emotion}
@@ -27,8 +24,9 @@ How {adj}, you are a {noun}
 
 I feel {emotion}
 
-wow
+Wow
 I've never felt more alive
 Nice one
-dreamy, dynamic, daring
-It Is Clear That As Well As Having A Gift For Presentation, You Have Worked To Achieve Such Skill
+Dreamy, dynamic, daring
+
+Hey! I hope you know that you're {adj}. A real {noun}

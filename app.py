@@ -83,7 +83,6 @@ def positivity_generator(seed_value):
     url_split= urllib.parse.urlsplit(request.base_url)
     scheme = url_split.scheme or 'https'
     base_url = scheme + '://' + url_split.netloc
-    print(font)
 
     return render_template('affirmation.html', color=color, message=message, font=font, base_url=base_url, seed_value=seed_value)
 

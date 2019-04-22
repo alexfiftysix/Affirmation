@@ -19,12 +19,20 @@ body {
     background-attachment: fixed;
 }
 
+/* TODO: set a max-width for the sentence*/
+
 h1 {
     text-align: center;
     font-size: 10vw;
     max-height: 100vh;
     color: white;
-    font-weight: normal;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255,255,255,0.1);
+    transition: 1s;
+}
+
+h1:hover {
+    text-shadow: 0 0 15px rgba(255,255,255,0.5);
 }
 
 .pretty_button {
@@ -34,17 +42,18 @@ h1 {
 
     background: rgba(0, 0, 0, 0.1);
     border: white 2px solid;
+    border-radius: 4px;
 
     text-decoration: none;
     color: white;
     font-weight: bolder;
     font-family: 'Open Sans', sans-serif;
 
-    transition: 0.2s;
+    transition: 0.5s;
 }
 
 .pretty_button:hover {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .bottom_left_float {
