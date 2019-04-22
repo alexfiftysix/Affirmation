@@ -6,14 +6,38 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css"/>
 </head>
 <body style="{{ color }}">
+<div class="bottom_left_float">
+    <button class="pretty_button" onclick="go_back()">Back</button>
+    <a href="{{ base_url }}">
+        <button class="pretty_button">New</button>
+    </a>
+</div>
+
 <h1 style="{{ font }}">{{ message }}</h1>
-</body>
 <script>
+
+    history.pushState({seed: {{ seed_value }}}, "affirmation", window.location);
+
+    function go_back() {
+        if (window.history.length !== 3) {
+            window.history.go(-2);
+        }
+    }
+
     document.addEventListener("keydown", event => {
         // If users press 'enter' or 'right arrow' the page refreshes, showing a new affirmation
+        console.log(event.keyCode);
         if (event.keyCode === 13 || event.keyCode === 39) {
-            window.location.reload(false)
+            console.log(window.location);
+            window.location.replace("{{ base_url }}");
+        }
+
+        // if user presses left arrow, go to previous affirmation
+        else if (event.keyCode === 37) {
+            console.log(window.history);
+            go_back();
         }
     })
 </script>
+</body>
 </html>

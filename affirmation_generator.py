@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice, seed
 
 SENTENCE_STRUCTURES = [x.strip() for x in open('word_lists/sentence_structures.txt').readlines() if len(x) > 1]
 ADJECTIVES = [x.strip() for x in open('word_lists/adjectives.txt').readlines()]
@@ -8,15 +8,14 @@ EMOTIONS = [x.strip() for x in open('word_lists/emotions.txt').readlines()]
 
 
 def rand_from_list(list_of_stuff):
-    # TODO: This must be in the rand library, just use the lib function
-    return list_of_stuff[randint(0, len(list_of_stuff) - 1)]
+    return choice(list_of_stuff)
 
 
 def contains_tag(string: str, which_tag: str) -> bool:
     return string.__contains__('{' + which_tag + '}')
 
 
-def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotions):
+def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotions, seed_value):
     structure = sentence_structures[randint(0, len(sentence_structures) - 1)]
     contains_adj = '{adj}' in structure
     contains_qual = '{qual}' in structure
@@ -28,11 +27,6 @@ def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotio
     qualifier = rand_from_list(qualifiers)
     noun = rand_from_list(nouns)
     emotion = rand_from_list(emotions)
-    # TODO: support a/an before adjectives or qualifiers
-
-    # print("Structure: {}\nAdjective: {}\nQual: {}\nA/An: {}\nNoun: {}\nEmotion: {}\n---".format(
-    #     structure, adjective, qualifier, a_an, noun, emotion
-    # ))
 
     sentence: str = structure
     if contains_qual:
@@ -48,10 +42,6 @@ def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotio
     sentence = sentence.capitalize()
     sentence = convert_a_to_an(sentence)
     sentence = capitalize_i(sentence)
-
-    # for x in punctuation:
-    #     for y in punctuation:
-    #         sentence.replace('{}i{}'.format(x, y), '{}I{}'.format(x, y))
 
     return sentence
 
@@ -107,9 +97,9 @@ def convert_a_to_an(sentence: str) -> str:
     return sentence
 
 
-def generate_affirmation():
+def generate_affirmation(seed_value):
     """
     Function for most uses - writes a positive affirmation
     Eg "You're a winner!"
     """
-    return write_affirmation(SENTENCE_STRUCTURES, ADJECTIVES, QUALIFIERS, NOUNS, EMOTIONS)
+    return write_affirmation(SENTENCE_STRUCTURES, ADJECTIVES, QUALIFIERS, NOUNS, EMOTIONS, seed_value)

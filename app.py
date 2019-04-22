@@ -1,16 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request
 import random
+import os
+import urllib
 
 from affirmation_generator import generate_affirmation
-
-# TODO: Allow to go back to previous affirmations
 
 app = Flask(__name__)
 
 
-# TODO: Sentiment analysis of sentences to decide on appropriate colours.
+# TODO: Sentiment analysis of sentences to decide on appropriate colours. ???
 # TODO: different fonts
-# TODO: Mobile support
 
 
 def generate_gradient_direction():
@@ -73,12 +72,24 @@ def generate_gradient():
 
 @app.route('/')
 def hello_world():
-    color = generate_gradient()
-    message = generate_affirmation()
-    font = random.choice(FONTS)
-    print(font)
+    random.seed(os.urandom(100))
+    seed_value = random.randint(0, 9999999999999)
+    return redirect(f'/seed={seed_value}')
 
-    return render_template('affirmation.html', color=color, message=message, font=font)
+
+@app.route('/seed=<seed_value>')
+def positivity_generator(seed_value):
+    random.seed(seed_value)
+    color = generate_gradient()
+    message = generate_affirmation(seed_value)
+    font = random.choice(FONTS)
+
+    url_split= urllib.parse.urlsplit(request.base_url)
+    scheme = url_split.scheme or 'https'
+    base_url = scheme + '://' + url_split.netloc
+    print(base_url)
+
+    return render_template('affirmation.html', color=color, message=message, font=font, base_url=base_url, seed_value=seed_value)
 
 
 if __name__ == '__main__':

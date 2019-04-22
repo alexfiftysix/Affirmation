@@ -25,4 +25,29 @@ h1 {
     max-height: 100vh;
     color: white;
 }
-/* TODO: only pick appropriate colours so I can have white text*/
+
+.pretty_button {
+    text-align: center;
+    background: azure;
+    padding: 1em;
+
+    background: rgba(0,0,0,0.01);
+    border: white 2px solid;
+
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    font-family: 'Open Sans', sans-serif;
+
+    transition: 0.2s;
+}
+
+.pretty_button:hover {
+    background: rgba(0,0,0,0.2);
+}
+
+.bottom_left_float {
+    position: fixed;
+    left: 1em;
+    bottom: 1em;
+}
