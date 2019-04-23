@@ -19,9 +19,8 @@ body {
     background-attachment: fixed;
 }
 
-/* TODO: set a max-width for the sentence*/
-
 h1 {
+    /*TODO: Max-text size*/
     text-align: center;
     font-size: 10vw;
     max-height: 100vh;
@@ -29,6 +28,7 @@ h1 {
     font-weight: bold;
     text-shadow: 0 0 5px rgba(255,255,255,0.1);
     transition: 1s;
+    max-width: 90%;
 }
 
 h1:hover {

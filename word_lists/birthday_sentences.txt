@@ -1,0 +1,1 @@
+Happy birthday {name}, I hope you have a {adj} day, full of {nice_thing}

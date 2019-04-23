@@ -16,11 +16,16 @@
 
 
 <script>
-
+    console.log(window.history);
     history.pushState({seed: {{ seed_value }}}, "affirmation", window.location);
+    {# TODO: Back behaviour should still work as expected#}
+    {#  History is pushed to avoid back sending the user to the previous site (not page)  #}
+    {#  But this now makes the user need to press back twice to go back one affirmation  #}
 
     function go_back() {
         if (window.history.length !== 3) {
+            // TODO: Make this actually work - currently only works on brand new tabs
+            // May be able to use cookies to store states?
             window.history.go(-2);
         }
     }

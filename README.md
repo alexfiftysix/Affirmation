@@ -18,3 +18,7 @@ After installing the requirements, run `python app.py` and head to localhost:500
 Application of further techniques in procedural message generation will allow for a greater range of messages.
 
 Messages targetted toward specific use-cases (affirmations for athletes, for musicians, etc.)
+
+Seasonal affirmations
+
+Cards - Eg. 30th birthday

@@ -3,11 +3,15 @@ import random
 import os
 import urllib
 
-from affirmation_generator import generate_affirmation
+from affirmation_generator import generate_affirmation, generate_birthday_message
 
 app = Flask(__name__)
 
+
 # TODO: Sentiment analysis of sentences to decide on appropriate colours. ???
+# TODO: add share link button
+
+# TODO: birthday messages
 
 def generate_gradient_direction():
     """
@@ -77,14 +81,39 @@ def hello_world():
 def positivity_generator(seed_value):
     random.seed(seed_value)
     color = generate_gradient()
-    message = generate_affirmation(seed_value)
+    message = generate_affirmation()
     font = random.choice(FONTS)
 
-    url_split= urllib.parse.urlsplit(request.base_url)
+    url_split = urllib.parse.urlsplit(request.base_url)
     scheme = url_split.scheme or 'https'
     base_url = scheme + '://' + url_split.netloc
 
-    return render_template('affirmation.html', color=color, message=message, font=font, base_url=base_url, seed_value=seed_value)
+    return render_template('affirmation.html', color=color, message=message, font=font, base_url=base_url,
+                           seed_value=seed_value)
+
+
+@app.route('/birthday/name=<name>')
+def generic_birthday(name):
+    random.seed(os.urandom(100))
+    seed_value = random.randint(0, 9999999999999)
+
+    return redirect(f'/birthday/name={name}/seed={seed_value}')
+
+
+@app.route('/birthday/name=<name>/seed=<seed_value>')
+def birthday_message_generator(name, seed_value):
+    # TODO: right from birthday should go to new birthday message
+    random.seed(seed_value)
+    color = generate_gradient()
+    message = generate_birthday_message(name)
+    font = random.choice(FONTS)
+
+    url_split = urllib.parse.urlsplit(request.base_url)
+    scheme = url_split.scheme or 'https'
+    base_url = scheme + '://' + url_split.netloc
+
+    return render_template('affirmation.html', color=color, message=message, font=font, base_url=base_url,
+                           seed_value=seed_value)
 
 
 if __name__ == '__main__':

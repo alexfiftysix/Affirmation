@@ -1,32 +1,32 @@
-from random import randint, choice, seed
+from random import randint, choice
 
 SENTENCE_STRUCTURES = [x.strip() for x in open('word_lists/sentence_structures.txt').readlines() if len(x) > 1]
+BIRTHDAY_SENTENCES = [x.strip() for x in open('word_lists/birthday_sentences.txt').readlines() if len(x) > 1]
 ADJECTIVES = [x.strip() for x in open('word_lists/adjectives.txt').readlines()]
 QUALIFIERS = [x.strip() for x in open('word_lists/qualifiers.txt').readlines()]
 NOUNS = [x.strip() for x in open('word_lists/nouns.txt').readlines()]
 EMOTIONS = [x.strip() for x in open('word_lists/emotions.txt').readlines()]
-
-
-def rand_from_list(list_of_stuff):
-    return choice(list_of_stuff)
+NICE_THINGS = [x.strip() for x in open('word_lists/nice_things.txt').readlines()]
 
 
 def contains_tag(string: str, which_tag: str) -> bool:
     return string.__contains__('{' + which_tag + '}')
 
 
-def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotions, seed_value):
+def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotions, nice_things, name="<name>"):
     structure = sentence_structures[randint(0, len(sentence_structures) - 1)]
     contains_adj = '{adj}' in structure
     contains_qual = '{qual}' in structure
-    contains_a = '{a}' in structure
     contains_noun = '{noun}' in structure
     contains_emotion = '{emotion}' in structure
+    contains_name = '{name}' in structure
+    contains_nice_thing = '{nice_thing}' in structure
 
-    adjective = rand_from_list(adjectives)
-    qualifier = rand_from_list(qualifiers)
-    noun = rand_from_list(nouns)
-    emotion = rand_from_list(emotions)
+    adjective = choice(adjectives)
+    qualifier = choice(qualifiers)
+    noun = choice(nouns)
+    emotion = choice(emotions)
+    nice_thing = choice(nice_things)
 
     sentence: str = structure
     if contains_qual:
@@ -37,6 +37,10 @@ def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotio
         sentence = sentence.replace('{noun}', noun)
     if contains_emotion:
         sentence = sentence.replace('{emotion}', emotion)
+    if contains_name:
+        sentence = sentence.replace('{name}', name)
+    if contains_nice_thing:
+        sentence = sentence.replace('{nice_thing}', nice_thing)
 
     sentence += '!'
     sentence = sentence.capitalize()
@@ -119,9 +123,13 @@ def capitalize_first_letter_of_sentence(sentence: str) -> str:
     return sentence
 
 
-def generate_affirmation(seed_value):
+def generate_birthday_message(name):
+    return write_affirmation(BIRTHDAY_SENTENCES, ADJECTIVES, QUALIFIERS, NOUNS, EMOTIONS, NICE_THINGS, name=name)
+
+
+def generate_affirmation():
     """
     Function for most uses - writes a positive affirmation
     Eg "You're a winner!"
     """
-    return write_affirmation(SENTENCE_STRUCTURES, ADJECTIVES, QUALIFIERS, NOUNS, EMOTIONS, seed_value)
+    return write_affirmation(SENTENCE_STRUCTURES, ADJECTIVES, QUALIFIERS, NOUNS, EMOTIONS, NICE_THINGS)
