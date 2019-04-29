@@ -14,13 +14,14 @@
 </div>
 <h1 style="{{ font }}">{{ message }}</h1>
 
-
-<script>
-    console.log(window.history);
-    history.pushState({seed: {{ seed_value }}}, "affirmation", window.location);
-    {# TODO: Back behaviour should still work as expected#}
-    {#  History is pushed to avoid back sending the user to the previous site (not page)  #}
-    {#  But this now makes the user need to press back twice to go back one affirmation  #}
+<script type="text/javascript   ">
+    var name = '{{ name }}';
+    var seed_value = '{{ seed_value }}';
+    var base_url = '{{ base_url }}'.replace('{name}', name);
+    history.pushState({seed: seed_value}, "affirmation", window.location);
+    // TODO: Back behaviour should still work as expected
+    //   History is pushed to avoid back sending the user to the previous site (not page)
+    //   But this now makes the user need to press back twice to go back one affirmation
 
     function go_back() {
         if (window.history.length !== 3) {
@@ -35,7 +36,7 @@
         console.log(event.keyCode);
         if (event.keyCode === 13 || event.keyCode === 39) {
             console.log(window.location);
-            window.location.replace("{{ base_url }}");
+            window.location.replace(base_url);
         }
 
         // if user presses left arrow, go to previous affirmation
@@ -43,7 +44,8 @@
             console.log(window.history);
             go_back();
         }
-    })
+    });
 </script>
+{#<script type="text/javascript" src="../static/positive_message.js"></script>#}
 </body>
 </html>

@@ -1,4 +1,4 @@
 Happy birthday {recipient}, I hope you have a {adj} day, full of {nice_thing}
 Happy birthday {recipient}
-Have a {adjective} day, {recipient}
+Have a {adj} day, {recipient}
 {recipient}, you're a {noun}

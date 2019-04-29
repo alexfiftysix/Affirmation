@@ -116,10 +116,10 @@ def birthday_message_generator(name, seed_value):
 
     url_split = urllib.parse.urlsplit(request.base_url)
     scheme = url_split.scheme or 'https'
-    base_url = scheme + '://' + url_split.netloc
+    base_url = scheme + '://' + url_split.netloc + '/birthday/name={name}'
 
     return render_template('affirmation.html', color=color, message=message, font=font, base_url=base_url,
-                           seed_value=seed_value)
+                           seed_value=seed_value, name=name)
 
 
 if __name__ == '__main__':
