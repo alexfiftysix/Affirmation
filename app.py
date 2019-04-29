@@ -77,6 +77,11 @@ def hello_world():
     return redirect(f'/seed={seed_value}')
 
 
+@app.route('/home')
+def home():
+    color = generate_gradient()
+    return render_template('home.html', color=color)
+
 @app.route('/seed=<seed_value>')
 def positivity_generator(seed_value):
     random.seed(seed_value)

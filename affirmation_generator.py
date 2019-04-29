@@ -1,12 +1,12 @@
 from random import randint, choice
 
-SENTENCE_STRUCTURES = [x.strip() for x in open('word_lists/sentence_structures.txt').readlines() if len(x) > 1]
-BIRTHDAY_SENTENCES = [x.strip() for x in open('word_lists/birthday_sentences.txt').readlines() if len(x) > 1]
-ADJECTIVES = [x.strip() for x in open('word_lists/adjectives.txt').readlines()]
-QUALIFIERS = [x.strip() for x in open('word_lists/qualifiers.txt').readlines()]
-NOUNS = [x.strip() for x in open('word_lists/nouns.txt').readlines()]
-EMOTIONS = [x.strip() for x in open('word_lists/emotions.txt').readlines()]
-NICE_THINGS = [x.strip() for x in open('word_lists/nice_things.txt').readlines()]
+SENTENCE_STRUCTURES = [x.strip() for x in open('word_lists/sentence_structures.txt').readlines() if len(x) > 0]
+BIRTHDAY_SENTENCES = [x.strip() for x in open('word_lists/birthday_sentences.txt').readlines() if len(x) > 0]
+ADJECTIVES = [x.strip() for x in open('word_lists/adjectives.txt').readlines() if len(x) > 0]
+QUALIFIERS = [x.strip() for x in open('word_lists/qualifiers.txt').readlines() if len(x) > 0]
+NOUNS = [x.strip() for x in open('word_lists/nouns.txt').readlines() if len(x) > 0]
+EMOTIONS = [x.strip() for x in open('word_lists/emotions.txt').readlines() if len(x) > 0]
+NICE_THINGS = [x.strip() for x in open('word_lists/nice_things.txt').readlines() if len(x) > 0]
 
 
 def contains_tag(string: str, which_tag: str) -> bool:
