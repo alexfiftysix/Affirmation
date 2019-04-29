@@ -7,28 +7,45 @@
 </head>
 <body style="{{ color }}">
 <header>
-    <h1>Feel Good</h1>
+    <div>
+        <h1>Affirmation</h1>
+        <h5>Feel Good</h5>
+    </div>
 </header>
 <main>
     <div class="card">
         <h3>Positive messages</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis doloremque dolorum, est
-        illum ipsa iusto laborum libero magnam modi perferendis quas tempore tenetur ullam! Ipsum neque perspiciatis
-        recusandae rerum sit!</p>
+            illum ipsa iusto laborum libero magnam modi perferendis quas tempore tenetur ullam! Ipsum neque perspiciatis
+            recusandae rerum sit!</p>
         <a href="{{ url_for('hello_world') }}">Try it!</a>
     </div>
     <div class="card">
         <h3>Birthday messages</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur cumque distinctio, eos
-        exercitationem, id magni minus numquam perspiciatis porro quas rerum, sapiente. Accusantium commodi explicabo
-        nam odio quam rerum tempore.</p>
+            exercitationem, id magni minus numquam perspiciatis porro quas rerum, sapiente. Accusantium commodi
+            explicabo nam odio quam rerum tempore.</p>
         <a href="{{ url_for('generic_birthday', name='Dale') }}">Try it!</a>
+
+        {#    TODO: Ask user for birthday-person's name, and senders name    #}
+        <form>
+            <label for="recipient">Birthday persons's name
+                <input type="text" name="recipient" >
+            </label>
+
+            <label for="sender">Your name
+                <input type="text" name="sender">
+            </label>
+
+            <input type="submit">
+        </form>
+
     </div>
     <div class="card">
         <h3>Some other thing</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi ducimus, ea eaque fugit ipsa
-        laborum minima nesciunt, numquam pariatur quam sapiente tempore ut veniam. Beatae consectetur minima quasi
-        reprehenderit voluptas.</p>
+            laborum minima nesciunt, numquam pariatur quam sapiente tempore ut veniam. Beatae consectetur minima quasi
+            reprehenderit voluptas.</p>
     </div>
 </main>
 <footer></footer>

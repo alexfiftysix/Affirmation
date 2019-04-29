@@ -10,8 +10,8 @@ app = Flask(__name__)
 
 # TODO: Sentiment analysis of sentences to decide on appropriate colours. ???
 # TODO: add share link button
+# TODO: Experiment with Markov Chains
 
-# TODO: birthday messages
 
 def generate_gradient_direction():
     """
@@ -82,6 +82,7 @@ def home():
     color = generate_gradient()
     return render_template('home.html', color=color)
 
+
 @app.route('/seed=<seed_value>')
 def positivity_generator(seed_value):
     random.seed(seed_value)
@@ -107,7 +108,7 @@ def generic_birthday(name):
 
 @app.route('/birthday/name=<name>/seed=<seed_value>')
 def birthday_message_generator(name, seed_value):
-    # TODO: right from birthday should go to new birthday message
+    # TODO: right from birthday should go to new birthday message - not new regular affirmation
     random.seed(seed_value)
     color = generate_gradient()
     message = generate_birthday_message(name)

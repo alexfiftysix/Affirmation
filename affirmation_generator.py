@@ -13,13 +13,18 @@ def contains_tag(string: str, which_tag: str) -> bool:
     return string.__contains__('{' + which_tag + '}')
 
 
-def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotions, nice_things, name="<name>"):
+def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotions, nice_things, name="<name>",
+                      sender="<sender>"):
+
+    # TODO: Rewrite with format
+    # Eg/proof. '{a}{c}'.format(a="a", b="b", c="c")
+
     structure = sentence_structures[randint(0, len(sentence_structures) - 1)]
     contains_adj = '{adj}' in structure
     contains_qual = '{qual}' in structure
     contains_noun = '{noun}' in structure
     contains_emotion = '{emotion}' in structure
-    contains_name = '{name}' in structure
+    contains_name = '{recipient}' in structure
     contains_nice_thing = '{nice_thing}' in structure
 
     adjective = choice(adjectives)
@@ -37,14 +42,18 @@ def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotio
         sentence = sentence.replace('{noun}', noun)
     if contains_emotion:
         sentence = sentence.replace('{emotion}', emotion)
-    if contains_name:
-        sentence = sentence.replace('{name}', name)
+
     if contains_nice_thing:
         sentence = sentence.replace('{nice_thing}', nice_thing)
 
     sentence += '!'
     sentence = sentence.capitalize()
     sentence = convert_a_to_an(sentence)
+
+    if contains_name:
+        sentence = sentence.replace('{recipient}', name.capitalize())
+        sentence += ' From {}'.format(sender)
+
     sentence = capitalize_i(sentence)
     sentence = capitalize_first_letter_of_sentence(sentence)
 
