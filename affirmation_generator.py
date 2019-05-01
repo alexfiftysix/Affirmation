@@ -13,18 +13,12 @@ def contains_tag(string: str, which_tag: str) -> bool:
     return string.__contains__('{' + which_tag + '}')
 
 
-def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotions, nice_things, name="<name>",
+def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotions, nice_things, recipient="<name>",
                       sender=None):
     # TODO: Rewrite with format
     # Eg/proof. '{a}{c}'.format(a="a", b="b", c="c")
 
     structure = sentence_structures[randint(0, len(sentence_structures) - 1)]
-    contains_adj = '{adj}' in structure
-    contains_qual = '{qual}' in structure
-    contains_noun = '{noun}' in structure
-    contains_emotion = '{emotion}' in structure
-    contains_name = '{recipient}' in structure
-    contains_nice_thing = '{nice_thing}' in structure
 
     adjective = choice(adjectives)
     qualifier = choice(qualifiers)
@@ -32,27 +26,13 @@ def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotio
     emotion = choice(emotions)
     nice_thing = choice(nice_things)
 
-    sentence: str = structure
-    if contains_qual:
-        sentence = sentence.replace('{qual}', qualifier)
-    if contains_adj:
-        sentence = sentence.replace('{adj}', adjective)
-    if contains_noun:
-        sentence = sentence.replace('{noun}', noun)
-    if contains_emotion:
-        sentence = sentence.replace('{emotion}', emotion)
-
-    if contains_nice_thing:
-        sentence = sentence.replace('{nice_thing}', nice_thing)
-
+    sentence: str = structure.format(adj=adjective, qual=qualifier, noun=noun, emotion=emotion, nice_thing=nice_thing, recipient=recipient, sender=sender)
     sentence += '!'
     sentence = sentence.capitalize()
     sentence = convert_a_to_an(sentence)
 
-    if contains_name:
-        sentence = sentence.replace('{recipient}', name.capitalize())
-        if sender:
-            sentence += f' From {sender}'
+    if sender:
+        sentence += f' From {sender}'
 
     sentence = capitalize_i(sentence)
     sentence = capitalize_first_letter_of_sentence(sentence)
@@ -134,7 +114,7 @@ def capitalize_first_letter_of_sentence(sentence: str) -> str:
 
 def generate_birthday_message(birthday_person, sender=None):
     return write_affirmation(BIRTHDAY_SENTENCES, ADJECTIVES, QUALIFIERS, NOUNS, EMOTIONS, NICE_THINGS,
-                             name=birthday_person, sender=sender)
+                             recipient=birthday_person, sender=sender)
 
 
 def generate_affirmation():

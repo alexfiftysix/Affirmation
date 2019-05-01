@@ -127,7 +127,7 @@ def birthday(birthday_person, seed_value):
     base_url = scheme + '://' + url_split.netloc + '/birthday/to={name}'
 
     return render_template('affirmation.html', color=color, message=message, font=font, base_url=base_url,
-                           seed_value=seed_value, name=birthday_person)
+                           seed_value=seed_value, recipient=birthday_person)
 
 
 @app.route('/birthday/to=<birthday_person>/from=<sender>/seed=<seed_value>')
@@ -142,7 +142,7 @@ def birthday_with_sender(birthday_person, sender, seed_value):
     base_url = scheme + '://' + url_split.netloc + '/birthday/to={name}/from={sender}'
 
     return render_template('affirmation.html', color=color, message=message, font=font, base_url=base_url,
-                           seed_value=seed_value, name=birthday_person, sender=sender)
+                           seed_value=seed_value, recipient=birthday_person, sender=sender)
 
 
 if __name__ == '__main__':
