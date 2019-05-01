@@ -98,28 +98,51 @@ def positivity_generator(seed_value):
                            seed_value=seed_value)
 
 
-@app.route('/birthday/name=<name>')
-def generic_birthday(name):
+@app.route('/birthday/to=<birthday_person>/from=<sender>')
+def birthday_with_sender_lean(birthday_person, sender):
     random.seed(os.urandom(100))
     seed_value = random.randint(0, 9999999999999)
 
-    return redirect(f'/birthday/name={name}/seed={seed_value}')
+    return redirect(f'/birthday/to={birthday_person}/from={sender}/seed={seed_value}')
 
 
-@app.route('/birthday/name=<name>/seed=<seed_value>')
-def birthday_message_generator(name, seed_value):
-    # TODO: right from birthday should go to new birthday message - not new regular affirmation
+@app.route('/birthday/to=<birthday_person>')
+def birthday_lean(birthday_person):
+    random.seed(os.urandom(100))
+    seed_value = random.randint(0, 9999999999999)
+
+    return redirect(f'/birthday/to={birthday_person}/seed={seed_value}')
+
+
+@app.route('/birthday/to=<birthday_person>/seed=<seed_value>')
+def birthday(birthday_person, seed_value):
+    # TODO: Way too much repeated code right here
     random.seed(seed_value)
     color = generate_gradient()
-    message = generate_birthday_message(name)
+    message = generate_birthday_message(birthday_person)
     font = random.choice(FONTS)
 
     url_split = urllib.parse.urlsplit(request.base_url)
     scheme = url_split.scheme or 'https'
-    base_url = scheme + '://' + url_split.netloc + '/birthday/name={name}'
+    base_url = scheme + '://' + url_split.netloc + '/birthday/to={name}'
 
     return render_template('affirmation.html', color=color, message=message, font=font, base_url=base_url,
-                           seed_value=seed_value, name=name)
+                           seed_value=seed_value, name=birthday_person)
+
+
+@app.route('/birthday/to=<birthday_person>/from=<sender>/seed=<seed_value>')
+def birthday_with_sender(birthday_person, sender, seed_value):
+    random.seed(seed_value)
+    color = generate_gradient()
+    message = generate_birthday_message(birthday_person, sender=sender)
+    font = random.choice(FONTS)
+
+    url_split = urllib.parse.urlsplit(request.base_url)
+    scheme = url_split.scheme or 'https'
+    base_url = scheme + '://' + url_split.netloc + '/birthday/to={name}/from={sender}'
+
+    return render_template('affirmation.html', color=color, message=message, font=font, base_url=base_url,
+                           seed_value=seed_value, name=birthday_person, sender=sender)
 
 
 if __name__ == '__main__':

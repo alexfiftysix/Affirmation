@@ -16,8 +16,9 @@
 
 <script type="text/javascript   ">
     var name = '{{ name }}';
+    var sender ='{{ sender }}';
     var seed_value = '{{ seed_value }}';
-    var base_url = '{{ base_url }}'.replace('{name}', name);
+    var base_url = '{{ base_url }}'.replace('{name}', name).replace('{sender}', sender);
     history.pushState({seed: seed_value}, "affirmation", window.location);
     // TODO: Back behaviour should still work as expected
     //   History is pushed to avoid back sending the user to the previous site (not page)
@@ -33,15 +34,12 @@
 
     document.addEventListener("keydown", event => {
         // If users press 'enter' or 'right arrow' the page refreshes, showing a new affirmation
-        console.log(event.keyCode);
         if (event.keyCode === 13 || event.keyCode === 39) {
-            console.log(window.location);
             window.location.replace(base_url);
         }
 
         // if user presses left arrow, go to previous affirmation
         else if (event.keyCode === 37) {
-            console.log(window.history);
             go_back();
         }
     });

@@ -14,7 +14,7 @@ def contains_tag(string: str, which_tag: str) -> bool:
 
 
 def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotions, nice_things, name="<name>",
-                      sender="<sender>"):
+                      sender=None):
     # TODO: Rewrite with format
     # Eg/proof. '{a}{c}'.format(a="a", b="b", c="c")
 
@@ -51,7 +51,8 @@ def write_affirmation(sentence_structures, adjectives, qualifiers, nouns, emotio
 
     if contains_name:
         sentence = sentence.replace('{recipient}', name.capitalize())
-        sentence += ' From {}'.format(sender)
+        if sender:
+            sentence += f' From {sender}'
 
     sentence = capitalize_i(sentence)
     sentence = capitalize_first_letter_of_sentence(sentence)
@@ -131,8 +132,9 @@ def capitalize_first_letter_of_sentence(sentence: str) -> str:
     return sentence
 
 
-def generate_birthday_message(name):
-    return write_affirmation(BIRTHDAY_SENTENCES, ADJECTIVES, QUALIFIERS, NOUNS, EMOTIONS, NICE_THINGS, name=name)
+def generate_birthday_message(birthday_person, sender=None):
+    return write_affirmation(BIRTHDAY_SENTENCES, ADJECTIVES, QUALIFIERS, NOUNS, EMOTIONS, NICE_THINGS,
+                             name=birthday_person, sender=sender)
 
 
 def generate_affirmation():
