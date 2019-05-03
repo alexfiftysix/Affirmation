@@ -11,6 +11,7 @@ app = Flask(__name__)
 # TODO: Sentiment analysis of sentences to decide on appropriate colours. ???
 # TODO: add share link button
 # TODO: Experiment with Markov Chains
+# TODO: Get it to work with '___' instead of specifying adj, verb, etc.
 
 
 def generate_gradient_direction():
@@ -80,7 +81,12 @@ def hello_world():
 @app.route('/home')
 def home():
     color = generate_gradient()
-    return render_template('home.html', color=color)
+
+    url_split = urllib.parse.urlsplit(request.base_url)
+    scheme = url_split.scheme or 'https'
+    base_url = scheme + '://' + url_split.netloc
+
+    return render_template('home.html', color=color, base_url=base_url)
 
 
 @app.route('/seed=<seed_value>')
@@ -106,7 +112,7 @@ def birthday_with_sender_lean(birthday_person, sender):
     return redirect(f'/birthday/to={birthday_person}/from={sender}/seed={seed_value}')
 
 
-@app.route('/birthday/to=<birthday_person>')
+@app.route('/birthday/to=<birthday_person>/')
 def birthday_lean(birthday_person):
     random.seed(os.urandom(100))
     seed_value = random.randint(0, 9999999999999)

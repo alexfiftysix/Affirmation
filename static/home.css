@@ -63,6 +63,11 @@ main {
 }
 
 .card a {
+
+
+}
+
+.blue_button {
     color: white;
     text-decoration: none;
 
@@ -73,7 +78,6 @@ main {
 
     justify-self: flex-end;
     align-self: flex-start;
-
 }
 
 .card a:hover{

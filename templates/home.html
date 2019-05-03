@@ -18,26 +18,26 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis doloremque dolorum, est
             illum ipsa iusto laborum libero magnam modi perferendis quas tempore tenetur ullam! Ipsum neque perspiciatis
             recusandae rerum sit!</p>
-        <a href="{{ url_for('hello_world') }}">Try it!</a>
+        <a class="blue_button" href="{{ url_for('hello_world') }}">Try it!</a>
     </div>
     <div class="card">
         <h3>Birthday messages</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur cumque distinctio, eos
             exercitationem, id magni minus numquam perspiciatis porro quas rerum, sapiente. Accusantium commodi
             explicabo nam odio quam rerum tempore.</p>
-        <a href="{{ url_for('generic_birthday', name='Dale') }}">Try it!</a>
+        {#        <a href="{{ url_for('birthday', birthday_person='Dale') }}">Try it!</a>#}
 
         {#    TODO: Ask user for birthday-person's name, and senders name    #}
-        <form>
+        <form action="">
             <label for="recipient">Birthday persons's name
-                <input type="text" name="recipient" minlength="1">
+                <input id="recipient" type="text" name="recipient" minlength="1">
             </label>
 
             <label for="sender">Your name
-                <input type="text" name="sender">
+                <input id="sender" type="text" name="sender">
             </label>
 
-            <input type="submit">
+            <input class="blue_button" type="submit" onclick="return clicked()" value="Send Birthday Joy!">
         </form>
 
     </div>
@@ -49,5 +49,30 @@
     </div>
 </main>
 <footer></footer>
+<script type="text/javascript">
+    function clicked() {
+        let base_url = '{{ base_url }}';
+        let recipient = document.getElementById('recipient').value;
+        let sender = document.getElementById('sender').value;
+
+        let redirect_to = base_url + '/birthday/to=' + recipient;
+
+        if (!recipient) {
+            {#TODO: Flash warning/advice to user#}
+            return false;
+        }
+
+
+        if (sender) {
+            redirect_to += '/from=' + sender;
+        }
+
+
+
+        window.location = redirect_to;
+
+        return false;
+    }
+</script>
 </body>
 </html>

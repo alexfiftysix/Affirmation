@@ -8,17 +8,21 @@
 <body style="{{ color }}">
 <div class="bottom_left_float">
     <button class="pretty_button" onclick="go_back()">Back</button>
-    <a href="{{ base_url }}">
-        <button class="pretty_button">New</button>
-    </a>
+{#    <a href="{{ base_url }}">#}
+        <button class="pretty_button" onclick="go_forwards()">New</button>
+{#    </a>#}
 </div>
 <h1 style="{{ font }}">{{ message }}</h1>
 
-<script type="text/javascript   ">
+<script type="text/javascript">
+    // TODO: Move this into a .js file
     var name = '{{ recipient }}';
     var sender ='{{ sender }}';
     var seed_value = '{{ seed_value }}';
-    var base_url = '{{ base_url }}'.replace('{name}', name).replace('{sender}', sender);
+    {#var base_url = '{{ base_url }}'.replace('{name}', name).replace('{sender}', sender);#}
+    var base_url = '{{ base_url }}';
+    base_url = base_url.replace('{name}', name);
+    base_url = base_url.replace('{sender}', sender);
     history.pushState({seed: seed_value}, "affirmation", window.location);
     // TODO: Back behaviour should still work as expected
     //   History is pushed to avoid back sending the user to the previous site (not page)
@@ -32,10 +36,14 @@
         }
     }
 
+    function go_forwards() {
+        window.location.replace(base_url);
+    }
+
     document.addEventListener("keydown", event => {
         // If users press 'enter' or 'right arrow' the page refreshes, showing a new affirmation
         if (event.keyCode === 13 || event.keyCode === 39) {
-            window.location.replace(base_url);
+            go_forwards()
         }
 
         // if user presses left arrow, go to previous affirmation
@@ -44,6 +52,5 @@
         }
     });
 </script>
-{#<script type="text/javascript" src="../static/positive_message.js"></script>#}
 </body>
 </html>
