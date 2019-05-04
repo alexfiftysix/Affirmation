@@ -23,14 +23,11 @@
         <h3>Positive messages</h3>
         <p>Generate positive messages to yourself. Point your screen at someone else to share the positivity.
             Find the perfect message and share it with your friends.</p>
-        <a class="blue_button" href="{{ url_for('hello_world') }}">Try it!</a>
+        <a class="blue_button" href="{{ url_for('affirmation_page') }}">Try it!</a>
     </div>
     <div class="card">
         <h3>Birthday messages</h3>
         <p>Send birthday joy around the world. Send them from you, or send them anonymously.</p>
-        {#        <a href="{{ url_for('birthday', birthday_person='Dale') }}">Try it!</a>#}
-
-        {#    TODO: Ask user for birthday-person's name, and senders name    #}
         <form action="">
             <label for="recipient">Birthday persons name:
                 <input id="recipient" type="text" name="recipient" minlength="1" placeholder="required"/>
@@ -64,11 +61,9 @@
             return false;
         }
 
-
         if (sender) {
             redirect_to += '/from=' + sender;
         }
-
 
         window.location = redirect_to;
 

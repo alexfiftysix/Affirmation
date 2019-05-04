@@ -70,13 +70,14 @@ class Gradient:
         return str(self)
 
 
-@app.route('/')
-def hello_world():
+@app.route('/positivity')
+def affirmation_page():
     random.seed(os.urandom(100))
     seed_value = random.randint(0, 9999999999999)
     return redirect(f'/seed={seed_value}')
 
 
+@app.route('/')
 @app.route('/home')
 def home():
     gradient = Gradient()
@@ -98,7 +99,7 @@ def positivity_generator(seed_value):
 
     url_split = urllib.parse.urlsplit(request.base_url)
     scheme = url_split.scheme or 'https'
-    base_url = scheme + '://' + url_split.netloc
+    base_url = scheme + '://' + url_split.netloc + '/positivity'
 
     return render_template('affirmation.html', color=gradient, message=message, font=font, base_url=base_url,
                            seed_value=seed_value)
