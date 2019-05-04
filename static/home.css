@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+
 }
 
 body {
@@ -9,6 +10,7 @@ body {
 
     font-family: sans-serif;
     color: white;
+    background-attachment: fixed;
 }
 
 header div {
@@ -20,6 +22,7 @@ h1 {
     font-size: 10vw;
     margin-bottom: 10px;
 }
+
 h5 {
     font-size: 3vw;
     margin-top: 0;
@@ -38,53 +41,67 @@ main {
     width: 100%;
     max-width: 1000px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
 .card {
-    color: #000;
+    color: rgb(50, 50, 50);
     background: #fff;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 
     padding: 15px;
+    margin: 0 15px 40px;
 
     max-width: 300px;
-    height: 100%;
+    /*height: 100%;*/
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    justify-self: center;
 }
 
 .card p {
     margin-bottom: 40px;
 }
 
-.card a {
-
-
-}
-
 .blue_button {
+    /*TODO: Don't make them blue - make them whatever the bg colour is*/
+
     color: white;
     text-decoration: none;
+    font-weight: bold;
 
-    background: deepskyblue;
-
+    background: var(--highligh-color);
     padding: 10px;
     border-radius: 5px;
 
     justify-self: flex-end;
     align-self: flex-start;
+
+    border: none;
 }
 
-.card a:hover{
+.blue_button:hover {
+    cursor: pointer;
     text-shadow: 0 0 1px white;
 }
 
+.card a:hover {
 
-footer{
+}
+
+
+footer {
     min-height: 20vh;
+}
+
+
+input {
+    background-color: white;
+
+    margin-bottom: 1em;
+    padding: 0.7em;
+    border: 1px solid rgb(120, 120, 120);
 }

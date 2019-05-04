@@ -20,13 +20,9 @@ def generate_gradient_direction():
     """
     potential_directions = [
         'to bottom right',
-        'to bottom left',
         'to top right',
-        'to top left',
         'to bottom',
         'to right',
-        'to top',
-        'to left'
     ]
 
     return random.choice(potential_directions)
@@ -40,35 +36,38 @@ FONTS = [
 ]
 
 
-def generate_gradient():
-    """
-    returns a gradient which can be dropped into css on an element and will function as a 'background-image'
-    Chooses bright colours which should still support white text
-    """
-    # Yellow-brown range colours can look ugly
-    hue_1 = hue_2 = hue_3 = 35
-    while 30 <= hue_1 <= 80:
-        hue_1 = random.randint(0, 359)
-    saturation_1 = 100
-    lightness_1 = 50
+class Gradient:
+    # TODO: Move to list for any size?
+    # TODO: darkest_color function
+    #       H=50 and H=178 are the danger zones
 
-    gradient_step = random.randint(15, 45)
+    def __init__(self):
+        hue_1 = hue_2 = hue_3 = 35
+        while 30 <= hue_1 <= 80:
+            hue_1 = random.randint(0, 359)
+        saturation_1 = 100
+        lightness_1 = 50
 
-    # To avoid yellow-browns
-    if hue_1 <= 30:
-        hue_2 = hue_1 - gradient_step
-        hue_3 = hue_2 - gradient_step
-    else:
-        hue_2 = hue_1 + gradient_step
-        hue_3 = hue_2 + gradient_step
+        gradient_step = random.randint(15, 45)
 
-    color_1 = f"hsl({hue_1}, {saturation_1}%, {lightness_1}%)"
-    color_2 = f"hsl({hue_2}, {saturation_1}%, {lightness_1}%)"
-    color_3 = f"hsl({hue_3}, {saturation_1}%, {lightness_1}%)"
+        # To avoid yellow-browns
+        if hue_1 <= 30:
+            hue_2 = hue_1 - gradient_step
+            hue_3 = hue_2 - gradient_step
+        else:
+            hue_2 = hue_1 + gradient_step
+            hue_3 = hue_2 + gradient_step
 
-    gradient_direction = generate_gradient_direction()
+        self.color_1 = f"hsl({hue_1}, {saturation_1}%, {lightness_1}%)"
+        self.color_2 = f"hsl({hue_2}, {saturation_1}%, {lightness_1}%)"
+        self.color_3 = f"hsl({hue_3}, {saturation_1}%, {lightness_1}%)"
+        self.direction = generate_gradient_direction()
 
-    return f"background-image: linear-gradient({gradient_direction}, {color_1}, {color_2}, {color_3})"
+    def __str__(self):
+        return f"background-image: linear-gradient({self.direction}, {self.color_1}, {self.color_2}, {self.color_3})"
+
+    def __repr__(self):
+        return str(self)
 
 
 @app.route('/')
@@ -80,19 +79,20 @@ def hello_world():
 
 @app.route('/home')
 def home():
-    color = generate_gradient()
+    gradient = Gradient()
+    highlight_color = gradient.color_3
 
     url_split = urllib.parse.urlsplit(request.base_url)
     scheme = url_split.scheme or 'https'
     base_url = scheme + '://' + url_split.netloc
 
-    return render_template('home.html', color=color, base_url=base_url)
+    return render_template('home.html', color=gradient, base_url=base_url, highlight_color=highlight_color)
 
 
 @app.route('/seed=<seed_value>')
 def positivity_generator(seed_value):
     random.seed(seed_value)
-    color = generate_gradient()
+    gradient = Gradient()
     message = generate_affirmation()
     font = random.choice(FONTS)
 
@@ -100,7 +100,7 @@ def positivity_generator(seed_value):
     scheme = url_split.scheme or 'https'
     base_url = scheme + '://' + url_split.netloc
 
-    return render_template('affirmation.html', color=color, message=message, font=font, base_url=base_url,
+    return render_template('affirmation.html', color=gradient, message=message, font=font, base_url=base_url,
                            seed_value=seed_value)
 
 
@@ -108,6 +108,7 @@ def positivity_generator(seed_value):
 def birthday_with_sender_lean(birthday_person, sender):
     random.seed(os.urandom(100))
     seed_value = random.randint(0, 9999999999999)
+    # TODO: Find a better way to generate seeds
 
     return redirect(f'/birthday/to={birthday_person}/from={sender}/seed={seed_value}')
 
@@ -124,7 +125,7 @@ def birthday_lean(birthday_person):
 def birthday(birthday_person, seed_value):
     # TODO: Way too much repeated code right here
     random.seed(seed_value)
-    color = generate_gradient()
+    color = Gradient()
     message = generate_birthday_message(birthday_person)
     font = random.choice(FONTS)
 
@@ -139,7 +140,7 @@ def birthday(birthday_person, seed_value):
 @app.route('/birthday/to=<birthday_person>/from=<sender>/seed=<seed_value>')
 def birthday_with_sender(birthday_person, sender, seed_value):
     random.seed(seed_value)
-    color = generate_gradient()
+    color = Gradient()
     message = generate_birthday_message(birthday_person, sender=sender)
     font = random.choice(FONTS)
 

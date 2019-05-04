@@ -7,17 +7,18 @@
 </head>
 <body style="{{ color }}">
 <div class="bottom_left_float">
+    <a href="{{ url_for('home') }}">
+        <button class="pretty_button">Home</button>
+    </a>
     <button class="pretty_button" onclick="go_back()">Back</button>
-{#    <a href="{{ base_url }}">#}
-        <button class="pretty_button" onclick="go_forwards()">New</button>
-{#    </a>#}
+    <button class="pretty_button" onclick="go_forwards()">New</button>
 </div>
 <h1 style="{{ font }}">{{ message }}</h1>
 
 <script type="text/javascript">
     // TODO: Move this into a .js file
     var name = '{{ recipient }}';
-    var sender ='{{ sender }}';
+    var sender = '{{ sender }}';
     var seed_value = '{{ seed_value }}';
     {#var base_url = '{{ base_url }}'.replace('{name}', name).replace('{sender}', sender);#}
     var base_url = '{{ base_url }}';

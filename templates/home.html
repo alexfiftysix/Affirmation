@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Affirmation - Home</title>
+    <style>
+        * {
+            --highligh-color: {{ highlight_color }}
+        }
+    </style>
     <link rel="stylesheet" type="text/css" href="/static/home.css"/>
 </head>
 <body style="{{ color }}">
@@ -13,39 +18,36 @@
     </div>
 </header>
 <main>
+{#    TODO: replace with simple big buttons - 'click here for joy' 'click here for birthdays'#}
     <div class="card">
         <h3>Positive messages</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis doloremque dolorum, est
-            illum ipsa iusto laborum libero magnam modi perferendis quas tempore tenetur ullam! Ipsum neque perspiciatis
-            recusandae rerum sit!</p>
+        <p>Generate positive messages to yourself. Point your screen at someone else to share the positivity.
+            Find the perfect message and share it with your friends.</p>
         <a class="blue_button" href="{{ url_for('hello_world') }}">Try it!</a>
     </div>
     <div class="card">
         <h3>Birthday messages</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur cumque distinctio, eos
-            exercitationem, id magni minus numquam perspiciatis porro quas rerum, sapiente. Accusantium commodi
-            explicabo nam odio quam rerum tempore.</p>
+        <p>Send birthday joy around the world. Send them from you, or send them anonymously.</p>
         {#        <a href="{{ url_for('birthday', birthday_person='Dale') }}">Try it!</a>#}
 
         {#    TODO: Ask user for birthday-person's name, and senders name    #}
         <form action="">
-            <label for="recipient">Birthday persons's name
-                <input id="recipient" type="text" name="recipient" minlength="1">
+            <label for="recipient">Birthday persons name:
+                <input id="recipient" type="text" name="recipient" minlength="1" placeholder="required"/>
             </label>
 
-            <label for="sender">Your name
-                <input id="sender" type="text" name="sender">
+            <label for="sender">Your name:
+                <input id="sender" type="text" name="sender" placeholder="optional">
             </label>
 
-            <input class="blue_button" type="submit" onclick="return clicked()" value="Send Birthday Joy!">
+            <input class="blue_button" type="submit" onclick="return clicked()" value="Send Birthday Joy!"/>
         </form>
 
     </div>
     <div class="card">
-        <h3>Some other thing</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi ducimus, ea eaque fugit ipsa
-            laborum minima nesciunt, numquam pariatur quam sapiente tempore ut veniam. Beatae consectetur minima quasi
-            reprehenderit voluptas.</p>
+        <h3>Contribute</h3>
+        <p>Send a message to the team about other features you'd like, or improvements we can make.</p>
+        <a class="blue_button" href="https://github.com/alexfiftysix/Affirmation">Contact</a>
     </div>
 </main>
 <footer></footer>
@@ -66,7 +68,6 @@
         if (sender) {
             redirect_to += '/from=' + sender;
         }
-
 
 
         window.location = redirect_to;
