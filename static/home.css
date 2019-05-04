@@ -23,12 +23,6 @@ h1 {
     margin-bottom: 10px;
 }
 
-@media screen and (min-width: 1070px) {
-    h1 {
-        font-size: 150px;
-    }
-}
-
 h5 {
     font-size: 3vw;
     margin-top: 0;
@@ -93,11 +87,6 @@ main {
     text-shadow: 0 0 1px white;
 }
 
-.card a:hover {
-
-}
-
-
 footer {
     min-height: 20vh;
 }
@@ -109,4 +98,13 @@ input {
     margin-bottom: 1em;
     padding: 0.7em;
     border: 1px solid rgb(120, 120, 120);
+}
+
+input[type=text] {
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
