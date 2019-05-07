@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Affirmation</title>
-    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/affirmation.css"/>
 </head>
 <body style="{{ color }}">
 <div class="bottom_left_float">
-    <a href="{{ url_for('home') }}">
-        <button class="pretty_button">Home</button>
-    </a>
+    <a class="pretty_button" href="{{ url_for('home') }}">Home</a>
     <button class="pretty_button" onclick="go_back()">Back</button>
     <button class="pretty_button" onclick="go_forwards()">New</button>
 </div>

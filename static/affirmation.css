@@ -41,10 +41,12 @@ h1:hover {
     background: azure;
     padding: 1em;
 
+
     background: rgba(0, 0, 0, 0.1);
     border: white 2px solid;
     border-radius: 4px;
 
+    font-size: 1em;
     text-decoration: none;
     color: white;
     font-weight: bolder;
