@@ -24,3 +24,6 @@ Messages targetted toward specific use-cases (affirmations for athletes, for mus
 Seasonal affirmations
 
 Cards - Eg. 30th birthday
+
+## Deploy
+run update.sh to git pull and compile all sass to .css

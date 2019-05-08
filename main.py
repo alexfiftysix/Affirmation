@@ -7,6 +7,7 @@ from affirmation_generator import generate_affirmation, generate_birthday_messag
 
 app = Flask(__name__)
 
+# TODO: Write bash script to git pull and compile all sass files to .css
 
 # TODO: Sentiment analysis of sentences to decide on appropriate colours. ???
 # TODO: add share link button
