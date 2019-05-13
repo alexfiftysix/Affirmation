@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css?family=Comfortaa|Flamenco|Poiret+One");
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-attachment: fixed;
+}
+
+h1 {
+  /*TODO: Max-text size*/
+  /*  Shrink text if the message is too long*/
+  text-align: center;
+  font-size: 10vw;
+  max-height: 100vh;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  transition: 1s;
+  max-width: 90%;
+}
+
+h1:hover {
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.pretty_button {
+  text-align: center;
+  background: azure;
+  padding: 1em;
+  background: rgba(0, 0, 0, 0.1);
+  border: white 2px solid;
+  border-radius: 4px;
+  font-size: 1em;
+  text-decoration: none;
+  color: white;
+  font-weight: bolder;
+  font-family: "Open Sans", sans-serif;
+  transition: 0.5s;
+}
+
+.pretty_button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.bottom_left_float {
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+}
+
+/*# sourceMappingURL=affirmation.css.map */
