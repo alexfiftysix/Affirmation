@@ -4,7 +4,7 @@ Affirmation is a solution is designed for transmitting positive affirmations to 
 
 Affirmation was created out of necessity. When viewing presentations in a noise-controlled environment which did not allow for applause, affirmation was made as a way to send positive vibes without clapping. 
 
-Affirmation is live at https://alexfiftysix.pythonanywhere.com/
+Affirmation was live at https://alexfiftysix.pythonanywhere.com/ 😢
 
 ## Usage
 
